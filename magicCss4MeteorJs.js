@@ -1,5 +1,9 @@
 Members = new Meteor.Collection('members');
 
+/**
+ * 
+ * mandatory: div to animate must have id like #{{_id}} to enable the animatorAutomation to retreive them
+ */
 animatorAutomation = {
 	collectionState: {},
 
@@ -30,7 +34,6 @@ animatorAutomation = {
 	  timeout = timeout || 1000;
 
 	  tpl.rendered = function () {
-console.log('tpl rendered...');
 	    var item = this.data;
 	    switch (self.collectionState[item._id]) {
 	        case 'added':
@@ -43,9 +46,7 @@ console.log('tpl rendered...');
 		  self.effectOnChanged('#' + item._id);
 	          break;
 	        default:
-console.log('behavior not expected');
 	    }
-console.log('tpl item rendered: ', this, self.collectionState[item._id]);
 
 	    // clear status
 	    self.collectionState[item._id] = null;
@@ -62,22 +63,19 @@ console.log('tpl item rendered: ', this, self.collectionState[item._id]);
 	        if (newDocument._removeAnimationPlayed === false) {
 	          self.collectionState[newDocument._id] = 'removed';
 	        }
-console.log('Members added: ', this, newDocument);
 	      },
 	
 	      removed: function (oldDocument) {
 	        self.collectionState[oldDocument._id] = 'removed';
-console.log('Members removed: ', this, oldDocument);
 	      },
 	
 	      changed: function (newDocument, oldDocument) {
 	        // default behavior
-	        self.collectionstate[newDocument._id] = 'changed';
+	        self.collectionState[newDocument._id] = 'changed';
 		// changed for a removed next step
 	        if (newDocument._removeAnimationPlayed === false) {
 	          self.collectionState[newDocument._id] = 'removed';
 	        }
-console.log('Members changed: ', this, newDocument, oldDocument);
 	      }
 	  });
 	},
@@ -107,7 +105,6 @@ console.log('Members changed: ', this, newDocument, oldDocument);
 	  // behavior for the animation
 	  collection.allow({
 	    remove: function (userId, document) {
-console.log('Members allow remove: ', document._id);
 	        if (document._removeAnimationPlayed === true) {
 	          return true;
 	        } else {

@@ -8,16 +8,20 @@
 </body>
 
 <template name="container">
-  <h1>Test d'utilisation de MagicCss</h1>
+  <h1>Test case of animation package from atmosphere.</h1>
+  <div class="row-fluid">
+  Here it uses magicCss project available here: <a href="http://www.minimamente.com/magic-css3-animations/" target="_blank">http://www.minimamente.com/magic-css3-animations/</a>. <br />To do that, i just downloaded the magic.min.css into my pubic/css folder. <br />I then added the &lt;link rel="stylesheet" href="/css/magic.min.css"&gt; in the head node of my template
+  </div>
+  
   {{# each inList}}
 	{{> item}}
   {{/each}}
 
   <hr />
-  Dans un premier temps, tous les tests se font via la console : insert / edit / remove
+  Actually all test are only done via console : insert / edit / remove
 <pre><code>
 // should display animation
-var id = Members.insert({fname:'Benjamin', lname:'RICHARD', date: new Date()});
+var id = Members.insert({fname:'YourFirstName', lname:'YourLastName', date: new Date()});
 
 // should display animation
 Members.update(id, {$set: {date: new Date()}});

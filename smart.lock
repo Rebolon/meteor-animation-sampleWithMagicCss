@@ -5,7 +5,15 @@
     "commit": "9bb2b5447e845c4f483df5e9b42a2c1de5ab909b"
   },
   "dependencies": {
-    "basePackages": {},
-    "packages": {}
+    "basePackages": {
+      "animation": {}
+    },
+    "packages": {
+      "animation": {
+        "git": "https://github.com/Rebolon/meteor-animation.git",
+        "tag": "v0.1.0",
+        "commit": "44155be287eafdc69181cdfa38e040c366826225"
+      }
+    }
   }
 }

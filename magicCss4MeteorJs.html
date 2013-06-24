@@ -15,6 +15,16 @@
 
   <hr />
   Dans un premier temps, tous les tests se font via la console : insert / edit / remove
+<pre><code>
+// should display animation
+var id = Members.insert({fname:'Benjamin', lname:'RICHARD', date: new Date()});
+
+// should display animation
+Members.update(id, {$set: {date: new Date()}});
+
+// should display animation
+Members.remove(id);
+</code></pre>
 </template>
 
 <template name="item">

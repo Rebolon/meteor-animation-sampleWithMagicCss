@@ -1,0 +1,25 @@
+<head>
+  <title>magicCss4MeteorJs</title>
+  <link rel="stylesheet" href="/css/magic.min.css">
+</head>
+
+<body>
+  {{> container}}
+</body>
+
+<template name="container">
+  <h1>Test d'utilisation de MagicCss</h1>
+  {{# each inList}}
+	{{> item}}
+  {{/each}}
+
+  <hr />
+  Dans un premier temps, tous les tests se font via la console : insert / edit / remove
+</template>
+
+<template name="item">
+  <div id="{{_id}}"><span>
+    {{fname}} {{lname}} <br />
+    {{date}} <br />
+  </span></div>
+</template>

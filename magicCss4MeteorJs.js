@@ -1,33 +1,33 @@
+// The collection for the test
 Members = new Meteor.Collection('members');
 
 if (Meteor.isClient) {
   Meteor.startup(function () {
-
   });
 
-  // Remove authorized only if property removeAnimationPlayed set to true
-  // @TODO find a way to store that data ouside the document property
-  // @TODO remove animation should also change that property and then recall the remove function
-
+  // The cursor
   membersList = Members.find({}, {sort: {date: 1}});
 
+  // #1 alter the template to animate
   animatorAutomation.alterTemplate(Template.item);
+
+  // #2 alter the cursor used by the template
   animatorAutomation.alterCursorObserver(membersList);
 
-  Template.item.created = function () {
-//@TODO use created to set a var that will disable animation of first render ?
-console.log('tpl item created: ', this);
-  };
-
+  // The helper that return the cursor (for the forEach)
   Template.container.inList = function () {
     return membersList;
   };
+
+/*  Template.item.created = function () {
+//@TODO maybe use created to set a var that will disable animation of first render ?
+  };*/
 }
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    // code to run on server at startup
   });
 
+  // #3 on server side, alter the Collection
   animatorAutomation.alterCollectionAllow(Members);
 }
